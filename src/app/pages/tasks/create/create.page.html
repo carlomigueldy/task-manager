@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+            <ion-card-header>
+              <ion-card-subtitle>Create a new task</ion-card-subtitle>
+              <ion-card-title>New Task</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              
+              <ion-item>
+                <ion-label position="stacked">Title</ion-label>
+                <ion-input 
+                  name="title" 
+                  placeholder="The title of the task" 
+                  required
+                  maxlength="64" 
+                  clearInput
+                  formControlName="title"
+                ></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Description</ion-label>
+                <ion-textarea 
+                  name="description" 
+                  placeholder="What's this task about?" 
+                  required
+                  maxlength="255" 
+                  clearInput
+                  formControlName="description"
+                ></ion-textarea>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Date</ion-label>
+                <ion-input 
+                  name="date" 
+                  type="date"
+                  placeholder="What's the deadline?" 
+                  required
+                  clearInput
+                  formControlName="date"
+                ></ion-input>
+              </ion-item>
+  
+              <ion-button class="ion-margin-top" expand="block" type="submit">Submit</ion-button>
+            </ion-card-content>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
