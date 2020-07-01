@@ -13,14 +13,19 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
-  <ion-card *ngFor="let task of tasks">
-    <ion-card-header>
-      <ion-card-subtitle>{{ task.date | date }}</ion-card-subtitle>
-      <ion-card-title>{{ task.title }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      {{ task.description }}
-    </ion-card-content>
-  </ion-card>
+
+  <div *ngIf="getAllTasks().length > 0; else elseBlock">
+    <ion-card *ngFor="let task of getAllTasks()">
+      <ion-card-header>
+        <ion-card-subtitle>{{ task.date | date }}</ion-card-subtitle>
+        <ion-card-title>{{ task.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ task.description }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ng-template #elseBlock>
+    <div class="ion-margin ion-text-center">You have not added any tasks yet.</div>
+  </ng-template>
 </ion-content>

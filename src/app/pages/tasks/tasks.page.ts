@@ -7,11 +7,13 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./tasks.page.scss'],
 })
 export class TasksPage implements OnInit {
-  tasks = this.taskService.tasks
-
   constructor(private taskService: TaskService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.taskService.tasks = await this.taskService.loadSaved()
   }
 
+  getAllTasks() {
+    return this.taskService.tasks
+  }
 }
