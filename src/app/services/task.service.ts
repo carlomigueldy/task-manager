@@ -30,6 +30,18 @@ export class TaskService {
    * 
    * @param id number
    */
+  completed(id: number) {
+    const index = this.tasks.findIndex(item => item.id === id)
+    this.tasks[index].is_completed = true
+
+    this.save()
+  }
+
+  /**
+   * Remove a specific task based on id.
+   * 
+   * @param id number
+   */
   removeTask(id: number) {
     const index = this.tasks.findIndex(item => item.id === id)
     this.tasks.splice(index, 1)
@@ -42,8 +54,9 @@ export class TaskService {
    * 
    * @return { void }
    */
-  private clearAll(): void {
+  public clearAll(): void {
     this.storage.remove('tasks')
+    this.tasks = []
   }
   
   /**

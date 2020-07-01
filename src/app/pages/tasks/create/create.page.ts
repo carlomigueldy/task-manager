@@ -26,9 +26,10 @@ export class CreatePage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.taskForm.value)
-    this.taskSerice.addTask(this.taskForm.value)
-    console.log(this.taskSerice.tasks)
-    this.router.navigateByUrl('/tasks')
+    if (this.taskForm.valid) {
+      this.taskSerice.addTask(this.taskForm.value)
+      this.taskForm.reset()
+      this.router.navigateByUrl('/tasks')
+    }
   }
 }

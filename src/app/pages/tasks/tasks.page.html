@@ -4,6 +4,12 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>All Tasks</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="clearAll()" color="primary">
+        <ion-icon slot="icon-only" name="trash-bin-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -15,10 +21,11 @@
   </ion-fab>
 
   <div *ngIf="getAllTasks().length > 0; else elseBlock">
-    <ion-card *ngFor="let task of getAllTasks()">
+    <ion-card (dblclick)="completed(task.id)" *ngFor="let task of getAllTasks()">
       <ion-card-header>
         <ion-card-subtitle>{{ task.date | date }}</ion-card-subtitle>
         <ion-card-title>{{ task.title }}</ion-card-title>
+        <ion-card-subtitle>{{ task.is_completed ? 'Completed' : '' }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         {{ task.description }}

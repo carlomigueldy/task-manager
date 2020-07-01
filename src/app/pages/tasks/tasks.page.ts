@@ -10,10 +10,18 @@ export class TasksPage implements OnInit {
   constructor(private taskService: TaskService) { }
 
   async ngOnInit() {
-    this.taskService.tasks = await this.taskService.loadSaved()
+    this.taskService.tasks = await this.taskService.loadSaved() || []
   }
 
   getAllTasks() {
-    return this.taskService.tasks
+    return this.taskService.tasks || []
+  }
+
+  clearAll() {
+    this.taskService.clearAll()
+  }
+
+  completed(id: number) {
+    this.taskService.completed(id)
   }
 }
