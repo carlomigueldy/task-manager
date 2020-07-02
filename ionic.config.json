@@ -1,7 +1,8 @@
 {
   "name": "todo-app",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular",
   "id": "2a766c27"
