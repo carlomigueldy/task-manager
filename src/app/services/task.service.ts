@@ -19,7 +19,7 @@ export class TaskService {
    */
   addTask(task: Task) {
     let newTask = task
-    newTask['id'] = this.tasks.length + 1
+    newTask['id'] = this.tasks.map(item => item.id).reduce((a, b) => Math.max(a, b)) + 1
     this.tasks.push(newTask)
 
     this.save()
@@ -57,6 +57,19 @@ export class TaskService {
   public clearAll(): void {
     this.storage.remove('tasks')
     this.tasks = []
+  }
+  
+  /**
+   * Clear all tasks from local storage.
+   * 
+   * @return { void }
+   */
+  public async clearAllCompleted(): Promise<void> {
+    const tasks = await this.loadSaved()
+
+    this.tasks = tasks.filter(item => !item.is_completed)
+
+    this.save()
   }
   
   /**

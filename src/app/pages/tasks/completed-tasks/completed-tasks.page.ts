@@ -3,11 +3,11 @@ import { TaskService } from 'src/app/services/task.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.page.html',
-  styleUrls: ['./tasks.page.scss'],
+  selector: 'app-completed-tasks',
+  templateUrl: './completed-tasks.page.html',
+  styleUrls: ['./completed-tasks.page.scss'],
 })
-export class TasksPage implements OnInit {
+export class CompletedTasksPage implements OnInit {
   constructor(
     private taskService: TaskService,
     private router: Router) { }
@@ -23,15 +23,11 @@ export class TasksPage implements OnInit {
       return []
     }
 
-    return tasks.filter(item => !item.is_completed)
+    return tasks.filter(item => item.is_completed)
   }
 
-  clearAll() {
-    this.taskService.clearAll()
-  }
-
-  completed(id: number) {
-    this.taskService.completed(id)
+  clearAllCompleted() {
+    this.taskService.clearAllCompleted()
   }
 
   removeTask(id: number) {

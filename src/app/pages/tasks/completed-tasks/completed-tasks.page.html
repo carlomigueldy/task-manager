@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="tasks"></ion-back-button>
     </ion-buttons>
-    <ion-title>All Tasks</ion-title>
+    <ion-title>Completed Tasks</ion-title>
 
     <ion-buttons slot="primary">
-      <ion-button (click)="clearAll()" color="primary">
+      <ion-button (click)="clearAllCompleted()" color="primary">
         <ion-icon slot="icon-only" name="trash-bin-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -14,12 +14,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['create']">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
   <div *ngIf="getAllTasks().length > 0; else elseBlock">
     <ion-card (click)="navigate(task.id)" *ngFor="let task of getAllTasks()">
       <ion-card-header>
@@ -32,31 +26,10 @@
       </ion-card-content>
       <ion-card-content style="display: flex; justify-content: center;">
         <ion-button (click)="removeTask(task.id)" fill="clear" style="width: 50%;">Remove</ion-button>
-        <ion-button (click)="completed(task.id)" style="width: 50%;">Done</ion-button>
       </ion-card-content>
     </ion-card>
   </div>
   <ng-template #elseBlock>
-    <div class="ion-margin ion-text-center">You have not added any tasks yet.</div>
+    <div class="ion-margin ion-text-center">There are no completed tasks yet.</div>
   </ng-template>
-
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="/">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>Tasks</ion-label>
-          <ion-badge>6</ion-badge>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="completed-tasks">
-          <ion-icon name="person-circle"></ion-icon>
-          <ion-label>Completed</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-toolbar>
-</ion-footer>
