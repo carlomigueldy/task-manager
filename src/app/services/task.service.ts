@@ -15,7 +15,7 @@ export class TaskService {
   /**
    * Add a new task and save in local storage.
    * 
-   * @param task 
+   * @param { Task } task 
    */
   addTask(task: Task) {
     let newTask = task
@@ -74,7 +74,7 @@ export class TaskService {
    * @return { void }
    */
   async loadSaved(): Promise<Task[]> {
-    console.log('[Task Service] Load saved tasks', this.tasks)
+    console.log('[Task Service] Load saved tasks', await this.storage.get('tasks'))
     return await this.storage.get('tasks')
   }
 }

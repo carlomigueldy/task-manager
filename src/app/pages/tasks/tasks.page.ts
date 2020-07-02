@@ -24,4 +24,8 @@ export class TasksPage implements OnInit {
   completed(id: number) {
     this.taskService.completed(id)
   }
+
+  removeTask(id: number) {
+    this.taskService.removeTask(id)
+  }
 }

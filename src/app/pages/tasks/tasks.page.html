@@ -30,6 +30,10 @@
       <ion-card-content>
         {{ task.description }}
       </ion-card-content>
+      <ion-card-content style="display: flex; justify-content: center;">
+        <ion-button (click)="removeTask(task.id)" fill="clear" style="width: 50%;">Remove</ion-button>
+        <ion-button (click)="completed(task.id)" style="width: 50%;">Done</ion-button>
+      </ion-card-content>
     </ion-card>
   </div>
   <ng-template #elseBlock>
